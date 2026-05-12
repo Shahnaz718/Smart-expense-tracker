@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//expense
+
 const expenseSchema = new mongoose.Schema(
   {
     title: {
