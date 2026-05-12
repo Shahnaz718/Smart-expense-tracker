@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Expense model
 const expenseSchema = new mongoose.Schema(
   {
     title: {
