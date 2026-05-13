@@ -1,0 +1,139 @@
+{
+    "info": {
+      "name": "Smart Expense Tracker API",
+      "_postman_id": "expense-tracker-it2234",
+      "description": "ICA-03 – IT2234 Web Services & Technology\nFull CRUD API for Smart Expense Tracker",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+      { "key": "base_url", "value": "http://localhost:5000/api" },
+      { "key": "expense_id", "value": "" },
+      { "key": "category_id", "value": "" }
+    ],
+    "item": [
+      {
+        "name": "Categories",
+        "item": [
+          {
+            "name": "Create Category",
+            "request": {
+              "method": "POST",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{base_url}}/categories",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Food\",\n  \"color\": \"#f59e0b\",\n  \"icon\": \"🍕\"\n}"
+              }
+            }
+          },
+          {
+            "name": "Get All Categories",
+            "request": {
+              "method": "GET",
+              "url": "{{base_url}}/categories"
+            }
+          },
+          {
+            "name": "Update Category",
+            "request": {
+              "method": "PUT",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{base_url}}/categories/{{category_id}}",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Dining Out\",\n  \"icon\": \"🍽️\"\n}"
+              }
+            }
+          },
+          {
+            "name": "Delete Category",
+            "request": {
+              "method": "DELETE",
+              "url": "{{base_url}}/categories/{{category_id}}"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Expenses",
+        "item": [
+          {
+            "name": "Create Expense",
+            "request": {
+              "method": "POST",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{base_url}}/expenses",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Lunch at canteen\",\n  \"amount\": 350,\n  \"category\": \"{{category_id}}\",\n  \"date\": \"2025-05-01\",\n  \"notes\": \"Rice and curry\"\n}"
+              }
+            }
+          },
+          {
+            "name": "Get All Expenses",
+            "request": {
+              "method": "GET",
+              "url": "{{base_url}}/expenses"
+            }
+          },
+          {
+            "name": "Get All Expenses (Filter by Category)",
+            "request": {
+              "method": "GET",
+              "url": {
+                "raw": "{{base_url}}/expenses?category={{category_id}}",
+                "query": [{ "key": "category", "value": "{{category_id}}" }]
+              }
+            }
+          },
+          {
+            "name": "Get All Expenses (Filter by Date Range)",
+            "request": {
+              "method": "GET",
+              "url": {
+                "raw": "{{base_url}}/expenses?startDate=2025-05-01&endDate=2025-05-31",
+                "query": [
+                  { "key": "startDate", "value": "2025-05-01" },
+                  { "key": "endDate", "value": "2025-05-31" }
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Single Expense",
+            "request": {
+              "method": "GET",
+              "url": "{{base_url}}/expenses/{{expense_id}}"
+            }
+          },
+          {
+            "name": "Update Expense",
+            "request": {
+              "method": "PUT",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{base_url}}/expenses/{{expense_id}}",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"title\": \"Lunch at canteen (updated)\",\n  \"amount\": 400\n}"
+              }
+            }
+          },
+          {
+            "name": "Delete Expense",
+            "request": {
+              "method": "DELETE",
+              "url": "{{base_url}}/expenses/{{expense_id}}"
+            }
+          },
+          {
+            "name": "Get Expense Summary",
+            "request": {
+              "method": "GET",
+              "url": "{{base_url}}/expenses/summary"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
